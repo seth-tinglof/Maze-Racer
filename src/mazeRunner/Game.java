@@ -81,14 +81,14 @@ implements KeyListener{
 		
 		while(alive  && notWon){
 			curTime = System.currentTimeMillis();
+			/* times the game/frame updates to at most 60Hz. */
 			while(curTime - lastTime < 16){
 				try {
-					Thread.sleep(curTime - lastTime);
+					Thread.sleep(16 - curTime + lastTime);
 				} catch (InterruptedException e) {}
 				curTime = System.currentTimeMillis();
 			}
-			/* times game to update once per frame. */
-			SwingUtilities.invokeLater(framePainter);
+			SwingUtilities.invokeLater(framePainter);		//Paint the current frame.
 			if(turnRight)
 				angle -= Math.PI / 60;
 			if(turnLeft)
